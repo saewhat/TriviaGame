@@ -45,8 +45,13 @@ button{
     height: 60px;
 }
 
+#submitBtn{
+    width: 85px;
+    height: 35px;
+}
+
 #timeLeft{
-    font-size: 20px;
+    font-size: 25px;
     font-family: 'Orbitron', sans-serif;
     color: rgba(54, 214, 86, 0.767);
     font-style: italic;

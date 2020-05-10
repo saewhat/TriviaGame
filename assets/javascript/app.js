@@ -27,7 +27,7 @@ var userSelection = [];
 var correct = 0;
 var wrong = 0;
 var blank = 0;
-var timer = 240;
+var timer = 120;
 var intervalID;
 
 var questions = [{
@@ -80,7 +80,7 @@ $(document).ready(function(){
         intervalID = setInterval(decrement, 1000);
 
         // this will expand the #main container to 'contain' all questions once the button is clicked
-        $("#main").css("height", "930px");
+        $("#main").css("height", "935px");
 
         mkQuestions();
         $("#startBtn").hide();
@@ -90,7 +90,7 @@ $(document).ready(function(){
             showResults();
         });
         // this will tell me what the user selected
-        $(input).click(function(){
+        $("input").click(function(){
             userSelection[this.name] = this.value;
         });
     });
@@ -125,7 +125,7 @@ function decrement(){
     }
 }
 
-// this will populate the page with the results from the quiz
+// this will populate the page with the user's results from the quiz
 function showResults(){
     $("#quizQs").hide();
     $("#timeLeft").hide();
@@ -143,7 +143,7 @@ function showResults(){
         }
     }
     var quizResults = $("#quizResults");
-    $(quizResults).append("<p>All Done!</p>");
+    $(quizResults).append("<br><br><br><p class=done>All Done!</p>");
     $(quizResults).append("<br><br><p>Correct Answers: " + correct + "</p>");
     $(quizResults).append("<br><p>Incorrect Answers: " + wrong + "</p>");
     $(quizResults).append("<br><p>Unanswered: " + blank + "</p>");
