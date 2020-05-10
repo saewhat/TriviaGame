@@ -26,6 +26,7 @@ Loop through the arrays & write the HTML from that onto the page.
 var userSelection = [];
 var correct = 0;
 var wrong = 0;
+var blank = 0;
 var timer = 240;
 var intervalID;
 
@@ -33,11 +34,6 @@ var questions = [{
     question: "What is jQuery?",
     choices: ["An adventure book!", "A search engine", "A lightweight, 'write less, do more', JavaScript library", "A new upcoming game"],
     answer: 2
-},
-{
-    questions: "What sign is used to define/access jQuery?",
-    choices: ["$", "!", ".", ";"],
-    answer: 0
 },
 {
     question: "jQuery is the library file of _______",
@@ -79,7 +75,12 @@ var questions = [{
 $(document).ready(function(){
 
     $("#startBtn").click(function(){
+
+        // this is for the quiz timer/counter
         intervalID = setInterval(decrement, 1000);
+
+        // this will expand the #main container to 'contain' all questions once the button is clicked
+        $("#main").css("height", "930px");
 
         mkQuestions();
         $("#startBtn").hide();
@@ -96,32 +97,56 @@ $(document).ready(function(){
 
 });
 
+
 // this will go through each questions and print it to the page
 function mkQuestions(){
     for(var i=0; i < questions.length; i++){
-        $("#quizQs").append(questions[i].question);
+        $("#quizQs").append("<h2><br>" + questions[i].question);
         // this will make the answer 'buttons' & also assign 
         for(var x=0; x < questions[i].choices.length; x++){
-            $("#quizQs").append("<label class='radio-inline'><input type='radio' name='name'>" + questions[i].choices[x] + "</label>");
+            $("#quizQs").append("<label class='radio-inline'><input type='radio'>" + questions[i].choices[x] + "</label>");
         }
+        $("#quizQs").append("<br><br>");
     }
 }
 
 // this will create the 'submit' button
 function mkSubmitBtn(){
-    $("#quizSubmit").append("<button id=submitBtn>Submit</button>");
+    $("#quizSubmit").append("<br><button id=submitBtn>Submit</button>");
 }
 
 
 function decrement(){
-    counter--;
-    $("#timeLeft").html("<h3>" + counter + "seconds remaining.");
-    if (counter === 0){
+    timer--;
+    $("#timeLeft").html("Time remaining: " + timer + " seconds left...<br><br>");
+    if (timer === 0){
+        alert("Times up!");
         showResults();
     }
 }
 
 // this will populate the page with the results from the quiz
 function showResults(){
-    
+    $("#quizQs").hide();
+    $("#timeLeft").hide();
+    $("#quizSubmit").hide();
+
+    for(i=0; i < questions.length; i++){
+        if(questions[i].answer === userSelection[i]){
+            correct++;
+        }
+        else if (userSelection[i]){
+            wrong++;
+        }
+        else {
+            blank++;
+        }
+    }
+    var quizResults = $("#quizResults");
+    $(quizResults).append("<p>All Done!</p>");
+    $(quizResults).append("<br><br><p>Correct Answers: " + correct + "</p>");
+    $(quizResults).append("<br><p>Incorrect Answers: " + wrong + "</p>");
+    $(quizResults).append("<br><p>Unanswered: " + blank + "</p>");
+
+    clearInterval(intervalID);
 }
