@@ -1,0 +1,33 @@
+body{
+    background-image: url("../images/matrix.jpg");
+    background-color: gray;
+    text-align: center;
+    background-size: cover;
+    margin:
+}
+
+.jumbotron{
+    text-align: center;
+    background-color: rgb(235, 235, 220);
+    color: green;
+}
+
+h1{
+    font-family: 'Bungee Shade', cursive;
+}
+
+#main{
+    background-color: rgb(235, 235, 220);
+    height: 300px;
+    margin-top: 50px;
+}
+
+#button{
+    margin: 50px 0;
+    text-align: center;
+}
+
+button{
+    width: 115px;
+    height: 60px;
+}
