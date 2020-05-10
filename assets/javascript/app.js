@@ -146,9 +146,9 @@ function showResults(){
     }
     var quizResults = $("#quizResults");
     $(quizResults).append("<br><br><br><p class=done>All Done!</p>");
-    $(quizResults).append("<br><br><p>Correct Answers: " + correct + "</p>");
-    $(quizResults).append("<br><p>Incorrect Answers: " + wrong + "</p>");
-    $(quizResults).append("<br><p>Unanswered: " + blank + "</p>");
+    $(quizResults).append("<br><br><p>Correct Answers: <u>" + correct + "</p>");
+    $(quizResults).append("<br><p>Incorrect Answers: <u>" + wrong + "</p>");
+    $(quizResults).append("<br><p>Unanswered: <u>" + blank + "</p>");
 
     clearInterval(intervalID);
 }
