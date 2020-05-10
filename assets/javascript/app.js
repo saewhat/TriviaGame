@@ -27,45 +27,46 @@ var userSelection = [];
 var correct = 0;
 var wrong = 0;
 var blank = 0;
-var timer = 120;
+var timer = 90;
 var intervalID;
 
 var questions = [{
-    question: "What is jQuery?",
+    question: "<p class =qStyle>What is jQuery?</p><br>",
     choices: ["An adventure book!", "A search engine", "A lightweight, 'write less, do more', JavaScript library", "A new upcoming game"],
     answer: 2
 },
 {
-    question: "jQuery is the library file of _______",
+    question: "<p class =qStyle>jQuery is the library file of _______</p><br>",
     choices: ["Python", "HTML", "JSON", "JavaScript"],
     answer: 3
 },
 {
-    question: "In what scenarios can jQuery be used?",
+    question: "<p class =qStyle>In what scenarios can jQuery be used?</p><br>",
     choices: ["When applying static/dynamic CSS onto a page", "Calling functions on events", "to simplify what would be used in JavaScript", "All of the above"],
     answer: 3
 },
 {
-    question: "Choose the one that is NOT a basic jQuery selector symbol.",
+    question: "<p class =qStyle>Choose the one that is NOT a basic jQuery selector symbol.</p><br>",
     choices: ["#", ".", "¿", "," ],
     answer: 2
 },
 {
-    question: "What is the correct jQuery code to set the background color of all p elements to red?",
+    question: "<p class =qStyle>What is the correct jQuery code to set the background color of all p elements to red?</p><br>",
     choices: ["$('p').style('background-color','red');", "$('p').css('background-color','red')", "$('p').manipulate('background-color','red')", "$('p').layout('background-color','red')"],
     answer: 1
 },
 {
-    question: "Which jQuery method is used to hide selected elements?",
+    question: "<p class =qStyle>Which jQuery method is used to hide selected elements?</p><br>",
     choices: ["hide()", "hidden()", "display(none)", "visible(false)"],
     answer: 0
 },
 {
-    question: "Which jQuery method is used to perform an asynchronous HTTP request?",
-    choices: ["jQuery.ajaxSetup()", "jQuery.ajaxAsync()", "jQuery.ajax()"],
+    question: "<p class =qStyle>Which jQuery method is used to perform an asynchronous HTTP request?</p><br>",
+    choices: ["jQuery.ajaxSetup()", "jQuery.ajaxAsync()", "jQuery.ajax()", "jQuery.ajaxStart()"],
+    answer: 2
 },
 {
-    question: "Which jQuery function is used to prevent code from running, before the document is finished loading?",
+    question: "<p class =qStyle>Which jQuery function is used to prevent code from running, before the document is finished loading?</p><br>",
     choices: ["$(document).load()", "$(document).ready()", "$(document).onload()", "$(code).ready()"],
     answer: 1
 }
@@ -80,7 +81,7 @@ $(document).ready(function(){
         intervalID = setInterval(decrement, 1000);
 
         // this will expand the #main container to 'contain' all questions once the button is clicked
-        $("#main").css("height", "935px");
+        $("#main").css("height", "1100px");
 
         mkQuestions();
         $("#startBtn").hide();
@@ -104,7 +105,7 @@ function mkQuestions(){
         $("#quizQs").append("<h2><br>" + questions[i].question);
         // this will make the answer 'buttons' & also assign 
         for(var x=0; x < questions[i].choices.length; x++){
-            $("#quizQs").append("<label class='radio-inline'><input type='radio'>" + questions[i].choices[x] + "</label>");
+            $("#quizQs").append("<label class='radio-inline'><input value='" + x + "' type='radio' name='" + i + "'>" + questions[i].choices[x] + "</label>");
         }
         $("#quizQs").append("<br><br>");
     }
@@ -112,13 +113,13 @@ function mkQuestions(){
 
 // this will create the 'submit' button
 function mkSubmitBtn(){
-    $("#quizSubmit").append("<br><button id=submitBtn>Submit</button>");
+    $("#quizSubmit").append("<br><br><button id=submitBtn>Submit</button>");
 }
 
 
 function decrement(){
     timer--;
-    $("#timeLeft").html("Time remaining: " + timer + " seconds left...<br><br>");
+    $("#timeLeft").html("Time remaining: <u>" + timer + "</u> seconds left...<br><br>");
     if (timer === 0){
         alert("Times up!");
         showResults();
@@ -127,6 +128,7 @@ function decrement(){
 
 // this will populate the page with the user's results from the quiz
 function showResults(){
+    $("#main").css("height", "550px");
     $("#quizQs").hide();
     $("#timeLeft").hide();
     $("#quizSubmit").hide();
